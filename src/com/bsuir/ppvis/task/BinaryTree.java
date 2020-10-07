@@ -1,3 +1,5 @@
+package com.bsuir.ppvis.task;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -21,7 +23,11 @@ public class BinaryTree {
      * @details Creates a root from the first pair of words that we inputed
      */
     public BinaryTree(String key, String info) throws NullPointerException {
-        this.root = new Node(key.toLowerCase(), info.toLowerCase());
+        try {
+            this.root = new Node(key.toLowerCase(), info.toLowerCase());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -37,7 +43,11 @@ public class BinaryTree {
      * @details This function allows us to add the pair of words(english and russian translations)
      */
     public void add(String key, String info) throws NullPointerException {
-        root = addRecursion(root, key.toLowerCase(), info.toLowerCase());
+        try {
+            root = addRecursion(root, key.toLowerCase(), info.toLowerCase());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     private Node addRecursion(Node root, String key, String info) {
@@ -71,9 +81,13 @@ public class BinaryTree {
      * @details This function allows us to search the russian word by the key (the english word) in the dictionary
      */
     public String search(String key) throws NullPointerException {
-        Node temp = findNode(root, key.toLowerCase());
-        if (temp == null) return null;
-        else return temp.getInfo();
+        try {
+            Node node = findNode(root, key.toLowerCase());
+            if (node != null) return node.getInfo();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private Node findNode(Node root, String key) {
@@ -91,9 +105,12 @@ public class BinaryTree {
      * @brief This function allows us to rewrite the russian word in a certain pair
      */
     public void rewrite(String key, String newInfo) throws NullPointerException {
-        Node node = findNode(root, key.toLowerCase());
-        if (node != null) {
-            node.setInfo(newInfo);
+        try {
+            newInfo = newInfo.toLowerCase();
+            Node node = findNode(root, key.toLowerCase());
+            if (node != null) node.setInfo(newInfo);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 
@@ -103,7 +120,11 @@ public class BinaryTree {
      * (the english word)
      */
     public void delete(String key) throws NullPointerException {
-        root = deleteRecursion(root, key.toLowerCase());
+        try {
+            root = deleteRecursion(root, key.toLowerCase());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     private Node deleteRecursion(Node root, String key) {
@@ -163,5 +184,3 @@ public class BinaryTree {
         return root;
     }
 }
-
-

@@ -1,3 +1,7 @@
+package com.bsuir.ppvis;
+
+import com.bsuir.ppvis.task.BinaryTree;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -8,10 +12,10 @@ public class Main {
         String key = new String();
         String info = new String();
         String separator = File.separator;
-        String filePath = "C:" + separator + "Users" + separator + "nikit" + separator + "OneDrive" + separator + "Desktop" + separator + "Slovar.txt";
-        boolean check = false;
+        String filePath = "C:" + separator + "Users" + separator + "Даник" + separator + "Desktop" + separator + "Slovar.txt";
         Scanner scanner = new Scanner(System.in);
 
+        exit:
         while (true) {
             switch (menu(scanner)) {
                 case 1:
@@ -45,17 +49,14 @@ public class Main {
                     System.out.println(bin.size());
                     break;
                 case 7:
+                    System.out.println("You read document by path " + filePath);
                     bin.read(filePath);
-                    System.out.println("You read document by path C:" + separator + "Users" + separator + "Даник" + separator + "Desktop" + separator + "Словарь.txt");
                     break;
                 case 8:
-                    check = true;
-                    break;
+                    break exit;
                 default:
                     break;
             }
-            if (check) break;
-            System.out.println();
         }
         scanner.close();
     }

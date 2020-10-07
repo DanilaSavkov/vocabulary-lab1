@@ -1,3 +1,5 @@
+package com.bsuir.ppvis.task;
+
 /**
  * @brief Helper class for implementing a binary tree structure (in particular a node)
  */
