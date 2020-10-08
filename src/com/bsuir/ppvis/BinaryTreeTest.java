@@ -30,11 +30,11 @@ public class BinaryTreeTest {
         assertEquals("cat", addTest.getRoot().getLeft().getKey());
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void addTestNegative() {
         BinaryTree addTest = new BinaryTree("cat", "кот");
         addTest.add("odin", "один");
-        assertNull(addTest.getRoot().getLeft());
+        addTest.getRoot().getLeft().getInfo();
     }
 
     @Test
@@ -71,7 +71,7 @@ public class BinaryTreeTest {
         rewriteTest.add("cat", "кот");
         rewriteTest.add("dog", "собака");
         rewriteTest.rewrite("pig", "машина");
-        assertEquals("машина", rewriteTest.search("pig"));
+        assertTrue(rewriteTest.search("pig") == "машина");
     }
 
     @Test
@@ -94,14 +94,17 @@ public class BinaryTreeTest {
         assertNull(delTest.search("pig"));
     }
 
-    @Test
-    public void delTestCaps() {
+    @Test//(expected = NullPointerException.class)
+    public void delTestNegative() throws NullPointerException {
         BinaryTree delTest = new BinaryTree();
-        delTest.add("CAT", "КОТ");
         delTest.add("dog", "собака");
         delTest.add("pig", "свинья");
-        delTest.delete("cat");
-        assertNull(delTest.search("CAT"));
+        try {
+            delTest.delete(null);
+        } catch (NullPointerException e) {
+            throw e;
+        }
+
     }
 
     @Test
